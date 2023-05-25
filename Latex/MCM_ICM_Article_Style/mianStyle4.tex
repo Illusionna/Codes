@@ -1,0 +1,181 @@
+\documentclass{headFile4}
+\mcmsetup{tcn = numbers, problem = Y, titleinsummary = true}
+
+\usepackage{mathptmx}
+\usepackage[titles]{tocloft}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+
+\captionsetup[figure]{font=bf,name=Figure,labelsep=period}
+\captionsetup[table]{font=bf,name=Table,labelsep=period}
+
+\renewcommand\cftsecdotsep{\cftdotsep}
+\renewcommand{\appendixpagename}{\Large\bfseries Appendices}
+\fancypagestyle{Synopsis}{\fancyhf{} \lhead{\sffamily \team} \rhead{\sffamily Synopsis}}
+
+\newcommand{\ucite}[1]{\textsuperscript{\cite{#1}}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand*{\dx}{\diff x}
+\newcommand*{\dy}{\diff y}
+\newcommand*{\dt}{\diff t}
+\newcommand*{\diffyx}{\frac{\diff y}{\diff x}}
+\newcommand*{\dN}{\diff N}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\hypersetup{colorlinks=true,linkcolor=black}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\roman{subsection}}
+\renewcommand\thesubsubsection{\Alph{subsubsection}}
+
+\lstset{
+	columns = flexible,
+	breaklines,
+	showstringspaces = false,
+	basicstyle = \small,
+	numbers = left,
+	numberstyle = \tiny, 
+	keywordstyle = \color{ blue!70},
+	commentstyle = \color{red!50!green!50!blue!50}, 
+	frame = shadowbox, 
+	rulesepcolor = \color{ red!20!green!20!blue!20} ,
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,belowskip=1em,
+	framexleftmargin=2em,framexrightmargin=2em,
+	language = Matlab
+}
+
+
+
+\title{\bfseries {\large Changes of Plant Communities during Cycles of Drought}
+}
+
+
+
+
+\begin{document}
+\vspace*{0.5em}
+\begin{summary}
+
+Drought can be very damaging to plant communities. In drought cycles with different frequency and severity, the number of plant species, different types of plants, and plant interactions all lead to different changes in plant communities over time. Plant communities play an important role in the ecosystem. Therefore, it is of great importance to study the factors affecting plant community change.
+
+\
+
+\noindent \textbf{Key Words:} Differential equations interpreting Model, Species competition, Lotka-Volterra Model, Interaction
+
+\end{summary}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+
+
+\section{Introduction}
+\subsection{Problem background}
+\
+
+Drought is one of the most important natural disasters that destroy plant communities. The damage of drought can be divided into cell dehydration directly destroys cell structure and metabolic disorders, lack of nutrition and affects growth. The drought adaptability of plants is reflected in many aspects, including water absorption capacity, transpiration strength, rapid growth, etc. Different species of plants also respond to stress. Therefore, it is particularly important to explore how plant communities change over time under different irregular weather cycles.
+\begin{large}
+\begin{equation}
+\begin{cases}
+    \min[\theta-\varepsilon(\sum\limits_{i=1}^{m}s_{i}^{-}+\sum\limits_{r=1}^{t}s_{r}^{+})]
+    \\
+    s.t.
+    \\
+    \sum\limits_{j=1}^{n}\lambda_jx_{ij}+s_{i}^{-}=\theta_{x_{ij_0}}\ \ \ (i=1,2,...,m)
+    \\
+    \sum\limits_{j=1}^{n}\lambda_jy_{rj}-s_{r}^{+}=y_{r_{ij_0}}\ \ \ (r=1,2,...,t)
+    \\
+    \sum\limits_{j=1}^{n}\lambda_j=1\ \ \ (\lambda_j\geqslant0,j=1,2,...,n)
+    \\
+    s_{i}^{-}\geqslant0,s_{r}^{+}\geqslant0
+\end{cases}
+\end{equation}
+\end{large}
+
+\subsubsection{Tertiary heading}
+\
+
+We predict the minimum number of species required in the basis of the system of differential equations, predicting many different outcomes due to the increasing number of species and changing species types.
+
+
+
+
+
+
+
+
+\section{Conclusions}
+\
+
+{\it\textbf{Aim at writing:}}  We are asked to develop a mathematical model that could reflect the changes in the plant community over time under various irregular weather cycles ,it requires combining interactions between drought adaptability and species (mainly considering competitive relationships). Second, we predict the minimum number of species required in the basis of the system of differential equations, predicting many different outcomes due to the increasing number of species and changing species types. Then, according to the topic analysis, the precipitation $A(t)$ cycle function is constructed to explore the influence of a greater frequency and wider variation of the occurrence of droughts in future weather cycles. We next go on to consider more complex and variable other factors like pollution and habitat reduction on plant communities. Finally, we conduct a sensitivity analysis to illustrate the scientific nature, sensitivity and objectivity of our model.
+
+{\it\textbf{As the research has demonstrated:}}
+
+(1) The results show that, the number of plant communities is slightly increased under mild drought, drought resistance and competitive species can survive, while the weak side may tend to extinction. In extreme drought, species tend to go extinct over time, but drought-resistant and competitive plants survive relatively long.
+\begin{table}[H]
+\centering
+\renewcommand\arraystretch{1.2}
+\setlength{\tabcolsep}{0.4cm}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0pt}
+\caption{satisfaction}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+\toprule[1.5pt]
+\multirow{2}*{index} & \multicolumn{6}{|c|}{percentage} & \multirow{2}*{score} \\
+\cline{2-7}
+ & \multicolumn{2}{|c|}{1} & 2 & 3 & 4 & 5 & \\
+\hline
+Fresh & \multicolumn{2}{|c|}{5.8\%} & 2.9\% & 8.8\% & 47.0\% & 35.2\% & 4.02 \\
+
+Security & \multicolumn{2}{|c|}{0.0\%} & 2.9\% & 35.2\% & 38.2\% & 23.5\% & 3.82 \\
+
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+
+(2) With moderate amounts of precipitation, the community needs at least four different plant species to benefit, and requires two of them to be competitive and the other two are less competitive. With the growth of the number of species, the competition between communities is fierce, so whether the new steady state is achieved needs to be analyzed in combination with specific practical problems.
+
+(3) If droughts occur frequently and change more widely, they may lead to extinction of more competitive species. Instead, less competitive species are maintained, the most typical case of more competitive trees in some parts of Africa but less competitive shrubs survive. If the drought frequency is low, then the effect is the same, that is, the results are consistent with (1).
+
+(4) Other factors such as pollution and habitat reduction will negatively affect community homeostasis.
+
+{\it\textbf{Look ahead:}} In a broad sense, our explanatory model of differential equations can not only be applied in the plant community to analyze the number of populations, but also can be extended to the ecosystem constituted by animals, microorganisms, etc., so it is widely used. From the perspective of life, such as potted plants, planting, you can apply the corresponding theory to cultivate better and more plants. From an ecological point of view, the protection of endangered vegetation in arid areas can play an important role in combating desertification.
+
+
+
+\addcontentsline{toc}{section}{References}
+
+\begin{thebibliography}{10}
+	\bibitem{ref1} Haberstroh, S Werner, C.The role of species interactions for forest resilience to drought.PLANT BIOLOGY.2022 Mar;24(7):1098-1107.doi:10.1111b.13415.
+
+    \bibitem{ref4} Del RloM., Schutze G., Pretzsch H. (2014) Temporal ¨variation of competition and facilitation in mixedspecies forests in Central Europe. Plant Biology, 16,166–176.
+\end{thebibliography}
+
+
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\subsection*{Matlab.m}
+
+
+\begin{lstlisting}
+clear
+clc
+
+disp("Hello, MCM/ICM")
+\end{lstlisting}
+
+
+
+
+
+\end{document}
