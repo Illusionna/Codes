@@ -1,0 +1,20 @@
+\documentclass{ctexart}
+
+\usepackage{datetime}
+\usepackage{fancyhdr}
+\usepackage[paperwidth=10cm,paperheight=5cm,left=1cm,right=1cm]{geometry}
+\usepackage[fontsize=12pt]{fontsize}
+\renewcommand{\thefootnote}{}
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{empty}
+% \hfill\xxivtime,\ \today
+
+\begin{document}
+
+{\renewcommand{\today}{\number\year\ 年 \number\month\ 月 \number\day\ 日}\today\vspace*{1.5em}}
+
+今天很轻松，一切在好转.
+
+\footnotetext{\flushright{\xxivtime,\ \today}}
+
+\end{document}
