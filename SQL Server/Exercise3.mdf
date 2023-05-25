@@ -1,0 +1,58 @@
+/*
+1、	使用SQL语句向数据表中输入数据。
+2、	使用SQL语句删除王红同学的成绩信息。
+3、	使用SQL语句将陈冬同学的数据结构成绩修改为95分。
+4、	将同学们的数据库技术成绩加上平时分（同学们的平时分为100分，占比30%）。
+*/
+// *****************************************
+
+USE Illusionna
+GO
+
+INSERT INTO class VALUES ('990','张丽','教学楼','')
+INSERT INTO class VALUES ('991','李微','教学楼','')
+INSERT INTO class VALUES ('992','黄敬兰','教学楼','7')
+INSERT INTO class VALUES ('993','孙军','教学楼','3')
+
+INSERT INTO student VALUES ('992001','陈东','男','1994-9-1','992','2012-9-1')
+INSERT INTO student VALUES ('992002','王红','女','1994-2-1','992','2012-9-1')
+INSERT INTO student VALUES ('992003','李华','男','1994-11-3','992','2012-9-1')
+INSERT INTO student VALUES ('992004','孙伟','男','1993-12-11','992','2012-9-1')
+INSERT INTO student VALUES ('992005','林非','女','1994-5-12','992','2012-9-1')
+INSERT INTO student VALUES ('992006','黄青','女','1994-5-12','992','2012-9-1')
+INSERT INTO student VALUES ('992007','赵宇','男','1995-1-1','992','2012-9-1')
+INSERT INTO student VALUES ('993001','张亚丽','女','1995-3-20','993','2012-9-1')
+INSERT INTO student VALUES ('993002','许小杰','男','1994-6-3','993','2012-9-1')
+INSERT INTO student VALUES ('993003','张红','女','1994-12-1','993','2012-9-1')
+
+INSERT INTO course VALUES ('Dep1-s001','数据结构',68,4,4)
+INSERT INTO course VALUES ('Dep4-b001','计算机基础',68,4,4)
+INSERT INTO course VALUES ('Dep4-p001','高级语言程序设计',68,4,4)
+INSERT INTO course VALUES ('Dep4-s001','数据库技术',80,5,5)
+INSERT INTO course VALUES ('Dep4-s002','JAVA程序设计与开发',68,4,4)
+INSERT INTO course VALUES ('Dep4-s003','软件工程',68,4,4)
+INSERT INTO course VALUES ('Dep4-s004','网页设计',80,5,5)
+
+INSERT INTO student_course (Course_id,Student_id,Grade,Credit,Semester,School_year)
+VALUES ('Dep1-s001','992001',95,2,'大二','两个学期')
+INSERT INTO student_course (Course_id,Student_id,Grade,Credit,Semester,School_year)
+VALUES ('Dep4-s001','992002',84,2,'大二','两个学期')
+
+// *****************************************
+
+DELETE FROM student_course
+WHERE Student_id = (SELECT Student_id FROM student WHERE Student_name = '王红')
+
+// *****************************************
+
+UPDATE student_course SET Grade = 95
+WHERE	(Student_id = (SELECT Student_id FROM student WHERE Student_name = '陈东'))
+		AND
+		(Course_id = (SELECT Course_id FROM course WHERE Course_name = '数据结构'))
+
+// *****************************************
+
+UPDATE student_course SET Grade = 0.7*Grade + 100*0.3
+WHERE Course_id = (SELECT Course_id FROM course WHERE Course_name = '数据库技术')
+
+// *****************************************
