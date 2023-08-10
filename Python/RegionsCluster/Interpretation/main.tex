@@ -1,0 +1,198 @@
+\documentclass[oneside,UTF8]{article}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[heading=true]{ctex}
+\usepackage{multicol}
+\usepackage{datetime}
+\usepackage[fontsize=12pt]{fontsize}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{lettrine}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\linespread{1.5}
+\geometry{
+    a4paper,
+    left = 3.18cm,
+    right = 3.18cm,
+    top = 2.54cm,
+    bottom = 2.54cm,
+}
+% ----------------------------------------
+\hypersetup{
+	colorlinks=true,
+	% linkcolor=cyan,
+	linkcolor=black,
+	filecolor=blue,      
+	% urlcolor=red,
+	citecolor=cyan,
+}
+% ----------------------------------------
+\lstset{
+    extendedchars=false,
+	columns = flexible,
+	breaklines,
+	showstringspaces = false,
+	basicstyle = \normalsize,
+	numbers = left,
+	numberstyle = \tiny, 
+	keywordstyle = \color{ blue!70},
+	commentstyle = \color{red!50!green!50!blue!50}, 
+	frame = shadowbox, 
+	rulesepcolor = \color{ red!20!green!20!blue!20} ,
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,belowskip=1em,
+	framexleftmargin=2em,framexrightmargin=2em,
+	language = Python
+}
+% ----------------------------------------
+\captionsetup[table]{labelfont={bf},labelformat={default},font={bf,normalsize},labelsep=space,name={Table}}
+\captionsetup[figure]{labelfont={bf},labelformat={default},font={bf,normalsize},labelsep=space,name={Figure}}
+% ----------------------------------------
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+% ----------------------------------------
+\CTEXsetup[name={,.},number={\Roman{section}}]{section}
+\CTEXsetup[format={\Large\bfseries}]{section}
+% ----------------------------------------
+\newcommand*{\rightup}{\textsuperscript}
+\newcommand*{\ucite}[1]{\textsuperscript{\cite{#1}}}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{red!20!green!20!blue!20} \leaders \hrule height \headrulewidth \hfill}}
+% ----------------------------------------
+\newcommand*{\purple}{\color{red!200!green!20!blue!20}}
+\newcommand*{\gray}{\color[rgb]{0.5 0.5 0.5}}
+\newcommand*{\red}{\color[rgb]{1 0 0}}
+\newcommand*{\shallowRed}{\color[rgb]{1 0.2 0.5}}
+\newcommand*{\shallowBlue}{\color[rgb]{0 0.98 0.93}}
+\newcommand*{\shallowYellow}{\color[rgb]{1 0.9 0.6}}
+\definecolor{shallowRed}{rgb}{1 0.2 0.5}
+\definecolor{shallowGreen}{rgb}{0.88 0.93 0.85}
+\definecolor{shallowYellow}{rgb}{1 0.9 0.6}
+\definecolor{shallowBlue}{rgb}{0 0.98 0.93}
+% ----------------------------------------
+\title{\bf Clustering of Data from Four Regions}
+\author{Illusionna}
+\date{\tt\small \underline{18:05, Wednesday $\tt2^{nd}$ August, 2023} $\dashrightarrow$ \xxivtime,\ \today}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\begin{document}
+% ----------------------------------------
+\maketitle
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\fancyhead[L]{\purple\rightmark}
+\fancyhead[R]{}
+\fancyhead[C]{}
+\fancyfoot[C]{\normalsize--\ \thepage\ --}
+\thispagestyle{fancy}
+
+\centerline{\bf\large 概述}
+
+\begin{multicols}{2}
+\lettrine[lines=2]{\bf 聚}{} 类形式丰富，可以分为有监督的聚类和无监督的聚类，譬如 K-means、GMM、SOM 等. 由于本人电脑性能不足，无法跑程序，学校服务器远程用不来，所以虚拟了一组数据 testData.xlsx 示例，以简单说明最优聚类数目的判断. 其次，由于聚类初始点的随机性，所以很多时候再次执行程序得到的最终聚类标签极大可能不尽相同，甚至所属类别都不同，这是正常的现象.
+
+择优选取聚类数，仅仅我个人而言，之所以采用 TOPSIS 优劣解距离法思想，是因为考虑到 DBI 指数越小簇内性能越好而 DI 指数越大簇外（间）结果越好，而 TOPSIS 应该可以解决这样的问题. {\shallowRed 最后强调一下，这仅是一个示例，如果你赞同这种思想，就往下看.}
+
+\end{multicols}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\pagestyle{fancy}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\section{准备数据执行程序}
+查看 $\rm\bf{./Cluster/Programs/README.md}$ 准备好数据（100M 有点大所以我没有打包）.
+
+
+
+\section{一处解释}
+三种聚类方法没有采取训练集和测试集的划分. 如果，我将 testData.xlsx 按照三七开，设置聚类数（假如 $\rm n\_clusters=4$），去拿训练集训练得到的模型预测测试集，那么，我会得到预测标签结果，就像：
+\[ \mbox{测试集：}[2,\ 1,\ 0,\ 0,\ 3] \]
+
+这表明，测试集第一行数据（第一个样本）属于第 2 类，第二个样本属于第 1 类，第三个样本属于第 0 类，以此类推. 起源数据的标签只有 0、1 两种（人为设置的标签，可以看作有监督的），而我们测试集预测的数据却反映 0、1、2、3 四类，显而易见，牛头不对马嘴.
+
+而且，即便设置聚类数 $\rm n\_clusters=2$，也存在这样一个现象.
+\[ \mbox{第一次执行测试集：}[0,\ 1,\ 0,\ 0,\ 1] \]
+\[ \mbox{第二次执行测试集：}[1,\ 0,\ 1,\ 0,\ 1] \]
+\[ \mbox{第二次执行测试集：}[1,\ 1,\ 0,\ 0,\ 0] \]
+
+在起源数据中，假设我们监督的测试集第一个样本标签是 0，但多次执行程序，未必见得预测的第一个样本就一定隶属第 0 类，这个例子中，第一个样本在三次执行情况下分别隶属第 0、1、1 类.
+
+假设我们人类认为的标签 0 代表“迦南”，1 代表“安可”，那就是说，测试集第一个样本被标记为迦南，但现在预测结果反映第一个样本第一次被机器认为是迦南，但第二次第三次被认为是安可.
+
+迦南被认为机器判为迦南$\to$安可$\to$安可，若我们采用交叉熵评判：
+\[ \rm accuracy=\frac{1}{3} \]
+
+{\bf\red 但}，很可能我下次执行得到：
+\[ \mbox{第一次执行测试集：}[0,\ 1,\ 0,\ 0,\ 1] \]
+\[ \mbox{第二次执行测试集：}[0,\ 0,\ 1,\ 0,\ 1] \]
+\[ \mbox{第二次执行测试集：}[1,\ 1,\ 0,\ 0,\ 0] \]
+
+准确率：
+\[ \rm accuracy=\frac{2}{3} \]
+
+更重要的是，这只是测试集一个样本，而测试集有起源数据$\times30\%$ 的量，这会使得多次执行程序得到的交叉熵判断混乱，第一次可能是迦南判为迦南，安可判为安可，到了第二次就变成迦南判为安可，安可判为安可，第一次的 accuracy 和第二次的 accuracy 可能天差地别，交叉熵不稳定.
+
+正是鉴于上面这两种现象，所以没有将起源数据划分训练集测试集，如果，使用者有划分需求，则需要自行补充相关 Python 函数.
+
+
+
+\section{聚类结果解读}
+自动生成相应聚类算法 Results 子文件夹.
+\begin{figure}[H]
+	\centering
+	\includegraphics*[scale=0.3]{./images/KmeansResultsFileFolder.png}
+	\caption{./Cluster/Programs/Kmeans}
+\end{figure}
+
+testData.xlsx 聚类数据放置在 Results 文件夹下.
+\begin{figure}[H]
+	\centering
+	\includegraphics*[scale=0.3]{./images/testDataFileFloder.png}
+	\caption{./Cluster/Programs/Kmeans/Results}
+\end{figure}
+
+左边文件夹存放聚类指数 DBI 和 DI 结果，后续可用于 TOPSIS，右边文件夹存放聚类结果，看需要使用.
+\begin{figure}[H]
+	\centering
+	\includegraphics*[scale=0.3]{./images/testDataSubFileFoldaer.png}
+	\caption{Iteration Results}
+\end{figure}
+
+
+
+\section{综合评价}
+这里提供之前 Matlab 函数 $\rm\bf{./Cluster/Programs/TOPSIS.m}$，可能需要使用者自行修改读取 .txt 文件数据，应该包括“路径”和“读取跳跃的步长”.
+
+\lstset{language=Matlab}
+\begin{lstlisting}
+M = importdata("./SOM_Intrinsic_Exponential/Intrinsic_Exponential.txt").data;
+N = length(M);
+GMM_DBI = M(1:2:N-1);
+GMM_DI = M(2:2:N);
+\end{lstlisting}
+
+最后，待使用者跑完数据，仿照下面形式择优选取较佳的聚类数目.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics*[scale=0.18]{./images/demo.pdf}
+\end{figure}
+
+
+
+
+\end{document}
