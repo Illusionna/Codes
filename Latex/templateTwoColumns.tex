@@ -1,0 +1,140 @@
+% % % XeLatex Compiler. % % %
+% כל המקיים נפש אחת מעלין עליו כאילו קיים עולם מלא
+\documentclass[oneside,UTF8]{article}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[heading=true]{ctex}
+\usepackage{multicol}
+\usepackage{datetime}
+\usepackage[fontsize=12pt]{fontsize}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{lettrine}
+\usepackage{lipsum}
+\usepackage{cjhebrew}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\linespread{1.5}
+\geometry{
+    a4paper,
+    left = 3.18cm,
+    right = 3.18cm,
+    top = 2.54cm,
+    bottom = 2.54cm
+}
+% ----------------------------------------
+\hypersetup{
+	colorlinks=true,
+	% linkcolor=cyan,
+	linkcolor=black,
+	filecolor=blue,      
+	% urlcolor=red,
+	citecolor=cyan,
+}
+% ----------------------------------------
+\lstset{
+    extendedchars=false,
+	columns = flexible,
+	breaklines,
+	showstringspaces = false,
+	basicstyle = \normalsize,
+	numbers = left,
+	numberstyle = \tiny, 
+	keywordstyle = \color{ blue!70},
+	commentstyle = \color{red!50!green!50!blue!50}, 
+	frame = shadowbox, 
+	rulesepcolor = \color{ red!20!green!20!blue!20} ,
+	xleftmargin=2em,xrightmargin=2em, aboveskip=1em,belowskip=1em,
+	framexleftmargin=2em,framexrightmargin=2em,
+	language = Python
+}
+% ----------------------------------------
+\captionsetup[table]{labelfont={bf},labelformat={default},font={bf,normalsize},labelsep=space,name={Table}}
+\captionsetup[figure]{labelfont={bf},labelformat={default},font={bf,normalsize},labelsep=space,name={Figure}}
+% ----------------------------------------
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+% ----------------------------------------
+\CTEXsetup[name={,.},number={\Roman{section}}]{section}
+\CTEXsetup[format={\Large\bfseries}]{section}
+% ----------------------------------------
+\newcommand*{\rightup}{\textsuperscript}
+\newcommand*{\ucite}[1]{\textsuperscript{\cite{#1}}}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{red!20!green!20!blue!20} \leaders \hrule height \headrulewidth \hfill}}
+% ----------------------------------------
+\newcommand*{\purple}{\color{red!200!green!20!blue!20}}
+\newcommand*{\gray}{\color[rgb]{0.5 0.5 0.5}}
+\newcommand*{\red}{\color[rgb]{1 0 0}}
+\newcommand*{\shallowRed}{\color[rgb]{1 0.2 0.5}}
+\newcommand*{\shallowBlue}{\color[rgb]{0 0.98 0.93}}
+\newcommand*{\shallowYellow}{\color[rgb]{1 0.9 0.6}}
+\definecolor{shallowRed}{rgb}{1 0.2 0.5}
+\definecolor{shallowGreen}{rgb}{0.88 0.93 0.85}
+\definecolor{shallowYellow}{rgb}{1 0.9 0.6}
+\definecolor{shallowBlue}{rgb}{0 0.98 0.93}
+% ----------------------------------------
+\title{\bf Clustering of Data from Four Regions}
+\author{Illusionna}
+\date{\tt\small \underline{18:05, Wednesday $\tt2^{nd}$ August, 2023} $\dashrightarrow$ \xxivtime,\ \today}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\begin{document}
+% ----------------------------------------
+\maketitle
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\fancyhead[L]{\purple\rightmark}
+\fancyhead[R]{}
+\fancyhead[C]{}
+\fancyfoot[C]{\normalsize--\ \thepage\ --}
+\thispagestyle{fancy}
+
+\centerline{\bf\large 概述}
+
+\begin{multicols}{2}
+
+\lettrine[lines=2]{\shallowRed$\bm\aleph$}{} \lipsum[1]
+
+\end{multicols}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\pagestyle{fancy}
+% ----------------------------------------
+% ----------------------------------------
+% ----------------------------------------
+\section{First}
+\subsection{Second}
+\subsubsection{Third}
+
+
+\lipsum[2]
+
+
+
+\section{简介}
+\subsection{聚类}
+\subsubsection{有监督的聚类}
+
+\subsubsection{无监督的聚类}
+
+
+\lipsum[3]
+
+
+
+
+\end{document}
