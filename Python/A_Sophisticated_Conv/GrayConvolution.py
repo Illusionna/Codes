@@ -76,7 +76,7 @@ def TestCode1(judge:bool=False) -> None:
     objectConv.PrintConv()
 
 def TestCode2() -> None:
-    img = Image.open('./R.png')
+    img = Image.open('./YAOSHI.png')
     img = img.convert('L')
     data = np.array(img).tolist()
     img.show()
