@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{background}
+\usepackage{xcolor}
+
+\geometry{
+    paperwidth = 192mm,
+    paperheight = 108mm,
+    left = 1cm,
+    right = 1cm
+}
+
+\backgroundsetup{
+    scale = 1,
+    angle = 0,
+    opacity = 0.2,
+    contents = {
+        \includegraphics*[
+            width = \paperwidth,
+            height = \paperheight,
+            keepaspectratio
+        ]{./Reddish_brown_beauty_in_white.png}
+    }
+    % https://gitee.com/Illusionna/Diagrams/raw/master/Reddish_brown_beauty_in_white.png
+}
+
+\begin{document}
+    \pagestyle{empty}
+    \color[rgb]{1 1 1}
+    \rule[0em]{0.01mm}{0.01mm}
+    \newpage
+    \color[rgb]{1 1 1}
+    \rule[0em]{0.01mm}{0.01mm}
+\end{document}
