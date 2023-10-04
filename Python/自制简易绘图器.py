@@ -1,3 +1,6 @@
+"""
+可用 pyinstaller 打包成 .exe 程序以备日后使用.
+"""
 import os
 from math import *
 from tkinter import *
